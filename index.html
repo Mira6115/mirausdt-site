@@ -107,6 +107,11 @@
                 <a href="#tokenomics" class="hover:text-pink-300 font-semibold transition">Tokenomics</a>
                 <a href="#team" class="hover:text-pink-300 font-semibold transition">Team</a>
                 <a href="#contract" class="hover:text-pink-300 font-semibold transition">Contract</a>
+                <!-- Whitepaper Link -->
+                <a href="https://github.com/Mira6115/mirausdt-token/blob/main/Whitepaper.md" target="_blank"
+                   class="hover:text-purple-400 font-semibold transition underline underline-offset-4">
+                    Whitepaper
+                </a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
                 <i class="fas fa-bars text-2xl"></i>
@@ -120,6 +125,11 @@
                 <a href="#tokenomics" class="hover:text-pink-300 font-semibold transition py-2">Tokenomics</a>
                 <a href="#team" class="hover:text-pink-300 font-semibold transition py-2">Team</a>
                 <a href="#contract" class="hover:text-pink-300 font-semibold transition py-2">Contract</a>
+                <!-- Whitepaper in mobile menu -->
+                <a href="https://github.com/Mira6115/mirausdt-token/blob/main/Whitepaper.md" target="_blank"
+                   class="hover:text-purple-400 font-semibold transition underline underline-offset-4 py-2">
+                    Whitepaper
+                </a>
             </div>
         </div>
     </nav>
@@ -443,6 +453,11 @@
                     <a href="https://t.me/MIRAUSD" class="hover:text-blue-400 transition transform hover:scale-125" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
                     <a href="#" class="hover:text-purple-300 transition transform hover:scale-125" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
                     <a href="#" class="hover:text-pink-300 transition transform hover:scale-125" target="_blank" title="Medium"><i class="fab fa-medium"></i></a>
+                    <!-- Whitepaper in Footer -->
+                    <a href="https://github.com/Mira6115/mirausdt-token/blob/main/Whitepaper.md" target="_blank" title="Whitepaper"
+                       class="hover:text-purple-400 transition underline underline-offset-4">
+                        <i class="fas fa-file-alt mr-1"></i>Whitepaper
+                    </a>
                 </div>
             </div>
             <div class="mt-6 pt-6 border-t border-fuchsia-700 text-center text-sm text-purple-100">
@@ -462,7 +477,6 @@
         // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        
         mobileMenuButton.addEventListener('click', function() {
             mobileMenu.classList.toggle('open');
         });
@@ -473,18 +487,13 @@
             question.addEventListener('click', function() {
                 const answer = this.nextElementSibling;
                 const icon = this.querySelector('i');
-                
-                // Toggle answer visibility
                 answer.classList.toggle('hidden');
-                
-                // Rotate icon
                 icon.classList.toggle('rotate-180');
             });
         });
 
         // Back to top button
         const backToTopButton = document.getElementById('back-to-top');
-        
         window.addEventListener('scroll', function() {
             if (window.pageYOffset > 300) {
                 backToTopButton.classList.remove('opacity-0', 'invisible');
@@ -494,12 +503,8 @@
                 backToTopButton.classList.add('opacity-0', 'invisible');
             }
         });
-        
         backToTopButton.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({top: 0, behavior: 'smooth'});
         });
 
         // Copy contract address to clipboard
@@ -510,7 +515,6 @@
                 console.error('Failed to copy: ', err);
             });
         }
-        
         // Add token to wallet function
         async function addTokenToWallet() {
             try {
@@ -539,17 +543,13 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-                
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    // Close mobile menu if open
                     if (mobileMenu.classList.contains('open')) {
                         mobileMenu.classList.remove('open');
                     }

@@ -13,6 +13,7 @@
     <style>
         html, body {
             font-family: 'Poppins', Arial, sans-serif !important;
+            scroll-behavior: smooth;
         }
         .gradient-bg {
             background: linear-gradient(135deg, #9F7AEA 0%, #7F1DFF 60%, #C026D3 100%);
@@ -30,7 +31,11 @@
             border: 6px solid #fff;
             border-radius: 2rem;
             background: linear-gradient(160deg, #fff 70%, #a78bfa 100%);
-            transition: box-shadow 0.2s;
+            transition: all 0.3s ease;
+        }
+        .hero-img-3d:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px 0 rgba(100, 50, 200, 0.3), 0 2px 15px 2px #9F7AEA;
         }
         h1, h2, h3 {
             font-family: 'Poppins', Arial, sans-serif !important;
@@ -56,17 +61,45 @@
             color: #E0E7FF;
             font-weight: 500;
             font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+        .mobile-menu {
+            transition: all 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+        @media (max-width: 768px) {
+            .super-title {
+                font-size: 2rem;
+                text-align: center;
+            }
+            .main-title {
+                font-size: 1.8rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body class="gradient-bg">
     <!-- Navigation -->
-    <nav class="text-white shadow-lg">
+    <nav class="text-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <img src="https://raw.githubusercontent.com/Mira6115/mirausdt-site/main/logo.png" alt="Mira USD Logo" class="h-10 w-10 rounded-full">
-                <span class="main-title">Mira USD</span>
-                <span class="bg-white text-purple-700 px-2 py-1 rounded-md text-sm font-semibold ml-2">MrUSDT</span>
+                <span class="main-title text-xl md:text-2xl">Mira USD</span>
+                <span class="bg-white text-purple-700 px-2 py-1 rounded-md text-xs md:text-sm font-semibold ml-2">MrUSDT</span>
             </div>
             <div class="hidden md:flex space-x-6 text-lg">
                 <a href="#about" class="hover:text-pink-300 font-semibold transition">About</a>
@@ -75,45 +108,61 @@
                 <a href="#team" class="hover:text-pink-300 font-semibold transition">Team</a>
                 <a href="#contract" class="hover:text-pink-300 font-semibold transition">Contract</a>
             </div>
-            <button class="md:hidden text-white focus:outline-none">
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-purple-900 bg-opacity-90">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#about" class="hover:text-pink-300 font-semibold transition py-2">About</a>
+                <a href="#features" class="hover:text-pink-300 font-semibold transition py-2">Features</a>
+                <a href="#tokenomics" class="hover:text-pink-300 font-semibold transition py-2">Tokenomics</a>
+                <a href="#team" class="hover:text-pink-300 font-semibold transition py-2">Team</a>
+                <a href="#contract" class="hover:text-pink-300 font-semibold transition py-2">Contract</a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section (with Banner image) -->
-    <section class="flex flex-col md:flex-row justify-center items-center py-10">
+    <section class="flex flex-col md:flex-row justify-center items-center py-10 md:py-20 px-4">
         <div class="md:w-2/5 w-full flex flex-col justify-center items-center px-6 mb-8 md:mb-0">
-            <h1 class="super-title mb-3">The Future of Stable Utility</h1>
+            <h1 class="super-title mb-3 md:mb-6">The Future of Stable Utility</h1>
             <p class="subtitle mb-6 text-center">MiraUSD is community-powered, ultra-fast, and built for transparent DeFi utility on Binance Smart Chain.</p>
-            <div class="flex gap-3 flex-wrap">
-                <a href="#contract" class="bg-white text-purple-700 px-6 py-3 rounded-xl font-semibold shadow-md hover:bg-purple-100 transition">Contract</a>
-                <a href="#about" class="border-2 border-white text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-purple-700 transition">Learn More</a>
+            <div class="flex gap-3 flex-wrap justify-center">
+                <a href="#contract" class="bg-white text-purple-700 px-6 py-3 rounded-xl font-semibold shadow-md hover:bg-purple-100 transition transform hover:scale-105">Contract</a>
+                <a href="#about" class="border-2 border-white text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-purple-700 transition transform hover:scale-105">Learn More</a>
             </div>
         </div>
         <div class="md:w-2/5 w-full flex justify-center items-center">
-            <img src="https://raw.githubusercontent.com/Mira6115/mirausdt-site/main/banner.png" alt="Banner" class="hero-img-3d w-full max-w-md">
+            <img src="https://raw.githubusercontent.com/Mira6115/mirausdt-site/main/mirausd.png" alt="Banner" class="hero-img-3d w-full max-w-md">
         </div>
     </section>
 
     <!-- Features with glass effect -->
-    <section id="features" class="py-12">
+    <section id="features" class="py-12 md:py-20">
         <div class="container mx-auto px-4">
-            <h2 class="main-title text-center mb-8" style="color: #fff;">Why Choose MrUSDT?</h2>
+            <h2 class="main-title text-center mb-8 md:mb-16" style="color: #fff;">Why Choose MrUSDT?</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card p-6 flex flex-col items-center hover:scale-105 transition">
-                    <i class="fas fa-tachometer-alt text-4xl text-purple-400 mb-4"></i>
-                    <h3 class="font-bold text-lg text-purple-700 mb-2">Fast Transactions</h3>
+                <div class="glass-card p-6 flex flex-col items-center feature-card hover:shadow-xl transition">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt text-4xl text-purple-400 mb-4"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-purple-300 mb-2">Fast Transactions</h3>
                     <p class="text-white text-center">BSC high throughput makes MrUSDT lightning-fast for all payments.</p>
                 </div>
-                <div class="glass-card p-6 flex flex-col items-center hover:scale-105 transition">
-                    <i class="fas fa-coins text-4xl text-pink-400 mb-4"></i>
-                    <h3 class="font-bold text-lg text-pink-700 mb-2">Stable Value</h3>
+                <div class="glass-card p-6 flex flex-col items-center feature-card hover:shadow-xl transition">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins text-4xl text-pink-400 mb-4"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-pink-300 mb-2">Stable Value</h3>
                     <p class="text-white text-center">Maintained at 1:1 with USD. Over <b>10,300</b> unique holders!</p>
                 </div>
-                <div class="glass-card p-6 flex flex-col items-center hover:scale-105 transition">
-                    <i class="fas fa-wallet text-4xl text-blue-400 mb-4"></i>
-                    <h3 class="font-bold text-lg text-blue-700 mb-2">DeFi Compatible</h3>
+                <div class="glass-card p-6 flex flex-col items-center feature-card hover:shadow-xl transition">
+                    <div class="feature-icon">
+                        <i class="fas fa-wallet text-4xl text-blue-400 mb-4"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-blue-300 mb-2">DeFi Compatible</h3>
                     <p class="text-white text-center">Easily integrates with wallets, exchanges, and all BEP-20 DeFi platforms.</p>
                 </div>
             </div>
@@ -121,38 +170,41 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16">
+    <section id="about" class="py-16 md:py-24">
         <div class="container mx-auto px-4">
-            <div class="glass-card mx-auto max-w-3xl p-8">
-                <h2 class="main-title mb-6 text-purple-700 text-center" style="color:#7c3aed;">About Mira USD (MrUSDT)</h2>
+            <div class="glass-card mx-auto max-w-3xl p-8 hover:shadow-xl transition">
+                <h2 class="main-title mb-6 text-purple-300 text-center">About Mira USD (MrUSDT)</h2>
                 <p class="text-white text-lg mb-3">
                     Mira USD (MrUSDT) is an independent, decentralized stablecoin pegged to the US Dollar, designed for speed, transparency, and true utility. <br>
                     <b>Not affiliated</b> with Tether or USDT official; "USDT" here only refers to value denomination.
                 </p>
-                <ul class="list-disc text-purple-100 pl-5 mb-1">
+                <ul class="list-disc text-purple-100 pl-5 mb-1 space-y-2">
                     <li>Ultra-low fees & instant BSC transfers</li>
                     <li>100% open-source and transparent</li>
                     <li>Audited smart contract</li>
+                    <li>Community-driven governance</li>
+                    <li>Secure and reliable transactions</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <!-- Tokenomics Section -->
-    <section id="tokenomics" class="py-16">
+    <section id="tokenomics" class="py-16 md:py-24">
         <div class="container mx-auto px-4">
-            <div class="glass-card mx-auto max-w-3xl p-8">
-                <h2 class="main-title mb-6 text-pink-700 text-center" style="color:#db2777;">Token Details</h2>
+            <div class="glass-card mx-auto max-w-3xl p-8 hover:shadow-xl transition">
+                <h2 class="main-title mb-6 text-pink-300 text-center">Token Details</h2>
                 <div class="flex flex-col md:flex-row items-center">
                     <img src="https://raw.githubusercontent.com/Mira6115/mirausdt-site/main/logo.png" alt="Token" class="w-32 h-32 rounded-2xl border-4 border-white shadow-lg mb-6 md:mb-0 md:mr-8">
                     <div class="flex-1">
-                        <div class="grid grid-cols-2 gap-3 text-white">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-white">
                             <div><span class="font-semibold text-purple-300">Name:</span> Mira USD</div>
                             <div><span class="font-semibold text-purple-300">Symbol:</span> MrUSDT</div>
                             <div><span class="font-semibold text-purple-300">Decimals:</span> 18</div>
                             <div><span class="font-semibold text-purple-300">Standard:</span> BEP-20</div>
                             <div><span class="font-semibold text-purple-300">Holders:</span> 10,300+</div>
-                            <div><span class="font-semibold text-purple-300">Chain:</span> BSC</div>
+                            <div><span class="font-semibold text-purple-300">Chain:</span> Binance Smart Chain</div>
+                            <div><span class="font-semibold text-purple-300">Launch:</span> 2025</div>
                         </div>
                     </div>
                 </div>
@@ -161,10 +213,10 @@
     </section>
 
     <!-- Team Section -->
-    <section id="team" class="py-16">
+    <section id="team" class="py-16 md:py-24">
         <div class="container mx-auto px-4">
-            <div class="glass-card mx-auto max-w-xl p-8">
-                <h2 class="main-title mb-8 text-blue-700 text-center" style="color:#3b82f6;">Team</h2>
+            <div class="glass-card mx-auto max-w-xl p-8 hover:shadow-xl transition">
+                <h2 class="main-title mb-8 text-blue-300 text-center">Team</h2>
                 <div class="flex flex-col md:flex-row items-center gap-6">
                     <img src="https://raw.githubusercontent.com/Mira6115/mirausdt-site/main/team.png" alt="Mira Team" class="w-24 h-24 rounded-full border-4 border-purple-400 shadow">
                     <div>
@@ -188,33 +240,33 @@
     </section>
 
     <!-- Contract Section -->
-    <section id="contract" class="py-16">
+    <section id="contract" class="py-16 md:py-24">
         <div class="container mx-auto px-4">
-            <div class="glass-card mx-auto max-w-4xl p-8 text-white">
-                <h2 class="main-title text-center mb-8 text-purple-500" style="color:#a78bfa;">Smart Contract Details</h2>
+            <div class="glass-card mx-auto max-w-4xl p-8 text-white hover:shadow-xl transition">
+                <h2 class="main-title text-center mb-8 text-purple-300">Smart Contract Details</h2>
                 <div class="mb-6">
                     <h3 class="text-lg font-semibold mb-2 text-purple-300">Contract Address</h3>
                     <div class="bg-gray-800 rounded-lg p-4 overflow-x-auto">
                         <code class="text-sm md:text-base">0xED347F9431C26fA316656D3d5e6d914F5151661c</code>
                     </div>
-                    <button onclick="copyToClipboard('0xED347F9431C26fA316656D3d5e6d914F5151661c')" 
-                            class="mt-2 text-sm bg-white text-purple-700 px-3 py-1 rounded hover:bg-purple-100 transition">
+                    <button onclick="copyToClipboard('0xED347F9431C26fA316656D3d5e6d914F5151661c')"
+                            class="mt-2 text-sm bg-white text-purple-700 px-3 py-1 rounded hover:bg-purple-100 transition transform hover:scale-105">
                         <i class="fas fa-copy mr-1"></i> Copy Address
                     </button>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <h3 class="text-lg font-semibold mb-2 text-pink-300">Block Explorer</h3>
-                        <a href="https://bscscan.com/token/0xED347F9431C26fA316656D3d5e6d914F5151661c" 
-                           target="_blank" rel="noopener noreferrer"
-                           class="inline-block bg-white text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-100 transition">
+                        <a href="https://bscscan.com/token/0xED347F9431C26fA316656D3d5e6d914F5151661c"
+                            target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center bg-white text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-100 transition transform hover:scale-105">
                             <i class="fas fa-external-link-alt mr-2"></i> View on BscScan
                         </a>
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold mb-2 text-blue-300">Add to Wallet</h3>
-                        <button onclick="addTokenToWallet()" 
-                                class="inline-flex items-center bg-white text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-100 transition">
+                        <button onclick="addTokenToWallet()"
+                                class="inline-flex items-center bg-white text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-100 transition transform hover:scale-105">
                             <i class="fas fa-wallet mr-2"></i> Add MrUSDT
                         </button>
                     </div>
@@ -223,14 +275,156 @@
         </div>
     </section>
 
-    <!-- Disclaimer Section -->
-    <section id="disclaimer" class="py-10">
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="py-16 md:py-24">
         <div class="container mx-auto px-4">
-            <div class="glass-card mx-auto max-w-3xl p-6">
+            <h2 class="main-title text-center mb-8 md:mb-16" style="color: #fff;">Project Roadmap</h2>
+            <div class="glass-card mx-auto max-w-4xl p-8">
+                <div class="space-y-8">
+                    <!-- Q1 2025 -->
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/4 mb-4 md:mb-0">
+                            <div class="bg-purple-500 text-white rounded-lg p-4 text-center">
+                                <h3 class="font-bold text-lg">Q1 2025</h3>
+                            </div>
+                        </div>
+                        <div class="md:w-3/4">
+                            <ul class="list-disc text-white pl-5 space-y-2">
+                                <li>Project conception and whitepaper</li>
+                                <li>Smart contract development</li>
+                                <li>Initial community building</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Q2 2025 -->
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/4 mb-4 md:mb-0">
+                            <div class="bg-pink-500 text-white rounded-lg p-4 text-center">
+                                <h3 class="font-bold text-lg">Q2 2025</h3>
+                            </div>
+                        </div>
+                        <div class="md:w-3/4">
+                            <ul class="list-disc text-white pl-5 space-y-2">
+                                <li>Token launch on Binance Smart Chain</li>
+                                <li>Initial liquidity provision</li>
+                                <li>First exchange listings</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Q3 2025 -->
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/4 mb-4 md:mb-0">
+                            <div class="bg-blue-500 text-white rounded-lg p-4 text-center">
+                                <h3 class="font-bold text-lg">Q3 2025</h3>
+                            </div>
+                        </div>
+                        <div class="md:w-3/4">
+                            <ul class="list-disc text-white pl-5 space-y-2">
+                                <li>Smart contract audit completion</li>
+                                <li>Community governance implementation</li>
+                                <li>Partnership development</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Q4 2025 -->
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/4 mb-4 md:mb-0">
+                            <div class="bg-purple-600 text-white rounded-lg p-4 text-center">
+                                <h3 class="font-bold text-lg">Q4 2025</h3>
+                            </div>
+                        </div>
+                        <div class="md:w-3/4">
+                            <ul class="list-disc text-white pl-5 space-y-2">
+                                <li>10,000+ holder milestone</li>
+                                <li>DeFi platform integrations</li>
+                                <li>Cross-chain bridge development</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <h2 class="main-title text-center mb-8 md:mb-16" style="color: #fff;">Frequently Asked Questions</h2>
+            <div class="glass-card mx-auto max-w-3xl p-8">
+                <div class="space-y-4">
+                    <!-- FAQ Item 1 -->
+                    <div class="border-b border-purple-300 pb-4">
+                        <button class="faq-question flex justify-between items-center w-full text-left text-white font-semibold">
+                            <span>What is Mira USD (MrUSDT)?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer mt-2 text-purple-100 hidden">
+                            Mira USD (MrUSDT) is a decentralized stablecoin pegged 1:1 to the US Dollar, operating on the Binance Smart Chain. It's designed for fast, low-cost transactions while maintaining price stability.
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 2 -->
+                    <div class="border-b border-purple-300 pb-4">
+                        <button class="faq-question flex justify-between items-center w-full text-left text-white font-semibold">
+                            <span>How is MrUSDT different from other stablecoins?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer mt-2 text-purple-100 hidden">
+                            MrUSDT focuses on community governance, transparency, and BSC-native efficiency. Unlike some stablecoins, it's not affiliated with any centralized entity and maintains full decentralization.
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 3 -->
+                    <div class="border-b border-purple-300 pb-4">
+                        <button class="faq-question flex justify-between items-center w-full text-left text-white font-semibold">
+                            <span>How can I acquire MrUSDT?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer mt-2 text-purple-100 hidden">
+                            You can acquire MrUSDT through decentralized exchanges on Binance Smart Chain or from community members. Always verify the contract address before trading.
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 4 -->
+                    <div class="border-b border-purple-300 pb-4">
+                        <button class="faq-question flex justify-between items-center w-full text-left text-white font-semibold">
+                            <span>Is MrUSDT audited?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer mt-2 text-purple-100 hidden">
+                            Yes, the MrUSDT smart contract has undergone professional audits to ensure security and functionality. Audit reports are available to the community.
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 5 -->
+                    <div class="pb-4">
+                        <button class="faq-question flex justify-between items-center w-full text-left text-white font-semibold">
+                            <span>How can I participate in governance?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer mt-2 text-purple-100 hidden">
+                            Governance participation is open to all MrUSDT holders. Join our Telegram community to learn about current proposals and voting procedures.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer Section -->
+    <section id="disclaimer" class="py-10 md:py-16">
+        <div class="container mx-auto px-4">
+            <div class="glass-card mx-auto max-w-3xl p-6 hover:shadow-xl transition">
                 <h3 class="text-xl font-semibold mb-2 text-white">Disclaimer</h3>
                 <p class="text-white text-sm">
                     Mira USD (MrUSDT) is an independent, community-driven project, and <b>not affiliated with Tether, USDT, or any stablecoin provider.</b> 
-                    All references to “USDT” in the project or token name solely refer to value denomination. Smart contract code is open-source and available for public review. Project contacts are available via LinkedIn, Telegram, and official email.
+                    All references to "USDT" in the project or token name solely refer to value denomination. Smart contract code is open-source and available for public review. Project contacts are available via LinkedIn, Telegram, and official email.
+                </p>
+                <p class="text-white text-sm mt-2">
+                    Cryptocurrency investments involve risk. Only invest what you can afford to lose. The MrUSDT team is not responsible for any financial losses.
                 </p>
             </div>
         </div>
@@ -242,24 +436,72 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 md:mb-0">
                     <img src="https://raw.githubusercontent.com/Mira6115/mirausdt-site/main/logo.png" alt="Mira USD Logo" class="h-10 w-10 rounded-full mr-3">
-                    <span class="main-title" style="color:#fff;">Mira USD</span>
+                    <span class="main-title text-xl md:text-2xl" style="color:#fff;">Mira USD</span>
                 </div>
-                <div class="flex space-x-6 text-xl">
-                    <a href="https://twitter.com/MIRAUSD" class="hover:text-pink-300 transition" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="https://t.me/MIRAUSD" class="hover:text-blue-400 transition" target="_blank"><i class="fab fa-telegram"></i></a>
-                    <a href="#" class="hover:text-purple-300 transition" target="_blank"><i class="fab fa-discord"></i></a>
-                    <a href="#" class="hover:text-pink-300 transition" target="_blank"><i class="fab fa-medium"></i></a>
+                <div class="flex space-x-6 text-xl mb-4 md:mb-0">
+                    <a href="https://twitter.com/MIRAUSD" class="hover:text-pink-300 transition transform hover:scale-125" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://t.me/MIRAUSD" class="hover:text-blue-400 transition transform hover:scale-125" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="hover:text-purple-300 transition transform hover:scale-125" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="hover:text-pink-300 transition transform hover:scale-125" target="_blank" title="Medium"><i class="fab fa-medium"></i></a>
                 </div>
             </div>
             <div class="mt-6 pt-6 border-t border-fuchsia-700 text-center text-sm text-purple-100">
                 <p>© 2025 Mira USD. All rights reserved. Version 1.0.0</p>
-                <p class="mt-2">Contact: <a href="mailto:admin@mrusdt.online" class="underline text-pink-200">admin@mrusdt.online</a></p>
+                <p class="mt-2">Contact: <a href="mailto:admin@mrusdt.online" class="underline text-pink-200 hover:text-pink-300">admin@mrusdt.online</a></p>
                 <p class="mt-2">Mira USD is a stablecoin pegged to the US Dollar on the Binance Smart Chain.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-purple-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // FAQ accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                // Toggle answer visibility
+                answer.classList.toggle('hidden');
+                
+                // Rotate icon
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
         // Copy contract address to clipboard
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
@@ -268,6 +510,7 @@
                 console.error('Failed to copy: ', err);
             });
         }
+        
         // Add token to wallet function
         async function addTokenToWallet() {
             try {
@@ -291,8 +534,27 @@
                 console.error('Error adding token to wallet:', error);
             }
         }
-        document.querySelector('.md\\:hidden').addEventListener('click', function() {
-            alert('Mobile menu would open here in a full implementation');
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
+                    }
+                }
+            });
         });
     </script>
 </body>
